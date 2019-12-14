@@ -1,0 +1,9 @@
+/devops/terraform.tfstate
+/devops/terraform.tfstate.backup
+/devops/CREDENTIALS_FILE.json
+/devops/.terraform/
+
+#PyCharm idea
+.idea/
+
+/venv/

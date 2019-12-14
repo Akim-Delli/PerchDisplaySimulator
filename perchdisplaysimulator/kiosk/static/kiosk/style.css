@@ -1,0 +1,22 @@
+body {
+    background: lightblue;
+}
+
+img.resize {
+    width: 540px; /* you can use % */
+    height: auto;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    cursor: grab;
+}
+
+.console {
+    font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace;
+    background-color: #101010;
+    color: lawngreen;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Perch Display Simulator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'kiosk/style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+<div class="container">
+  <h2><img src="{% static 'kiosk/images/logo.png' %}" alt="Perch Logo" style="width:20%;"></h2>
+</div>
+
+<div class="container">
+
+
+  <tbody>
+  {% if latest_interaction_list %}
+  <div class="panel panel-primary">
+    <div class="panel-heading">Engagement Interactions</div>
+
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Interaction Time</th>
+        <th scope="col">Interaction Type</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Kiosk Id</th>
+        <th scope="col">Button Name</th>
+        <th scope="col">Geolocation</th>
+      </tr>
+      </thead>
+
+      {% for interaction in latest_interaction_list %}
+
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ interaction.interaction_time }}</td>
+        <td>{{ interaction.interaction_type }}</td>
+        <td>{{ interaction.product_name }}</td>
+        <td>{{ interaction.kiosk_id }}</td>
+        <td>{{ interaction.button_name }}</td>
+        <td>{{ interaction.geolocation }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% else %}
+  <h1>Sorry, No interaction yet!.</h1>
+  {% endif %}
+  </tbody>
+
+</div>
+
+</body>
+</html>
