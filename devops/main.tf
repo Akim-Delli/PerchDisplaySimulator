@@ -2,7 +2,7 @@
 provider "google" {
   credentials = file("CREDENTIALS_FILE.json")
   project     = "perchdisplaysimulator"
-  region      = "us-east1"
+  region      = var.region
 }
 
 resource "random_id" "instance_id" {
@@ -20,7 +20,7 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install -r requirements.txt"
+  metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync;git clone https://github.com/Akim-Delli/PerchDisplaySimulator.git; pip install -r requirements.txt"
 
   network_interface {
     network = "default"
@@ -51,5 +51,25 @@ resource "google_compute_firewall" "default" {
   }
 }
 
+resource "google_sql_database_instance" "postgresql" {
+  name             = "master-instance"
+  database_version = var.postgresql_version
+  region           = var.region
 
+  settings {
+    tier = "db-f1-micro"
+  }
+}
 
+# create database
+resource "google_sql_database" "postgresql_db" {
+  name     = "perchsimulator"
+  instance = google_sql_database_instance.postgresql.name
+}
+
+resource "google_sql_user" "postgresql_user" {
+  name     = "percher"
+  instance = google_sql_database_instance.postgresql.name
+  host     = "%"
+  password = "var.db_password"
+}
