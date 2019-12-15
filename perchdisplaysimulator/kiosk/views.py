@@ -23,6 +23,12 @@ def stats(request):
     return HttpResponse(template.render(context, request))
 
 
+def display(request):
+    template = loader.get_template('kiosk/display.html')
+
+    return HttpResponse(template.render({}, request))
+
+
 @csrf_exempt
 def log(request):
     engagement_data = request.POST
@@ -30,6 +36,7 @@ def log(request):
                             interaction_time=engagement_data.get("interaction_time"),
                             interaction_type=engagement_data.get("interaction_type"),
                             kiosk_id=engagement_data.get("kiosk_id"),
+                            button_name=engagement_data.get("action"),
                             geolocation=engagement_data.get("geolocation")
                             )
     engagement.save()

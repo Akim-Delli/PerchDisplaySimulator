@@ -1,109 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Perch Display Simulator</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'kiosk/style.css' %}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="{% static 'kiosk/js/kiosk_logger.js' %}"></script>
+    <title>Perch Display Simulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'kiosk/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'kiosk/js/kiosk_logger.js' %}"></script>
 </head>
 
 <body>
 
 <div class="container">
-  <h2><img class="pull-left" src="{% static 'kiosk/images/logo.png' %}" alt="Perch Logo" style="width:20%;"></h2>
-  <div class="pull-right">
-    <a href="{% url 'stats' %}">
-      <h1><i class="fa fa-line-chart" aria-hidden="true"></i></h1>
-    </a>
-    <div class="row">
+    <h2><a href="{% url 'index' %}"><img src="{% static 'kiosk/images/logo.png' %}" alt="Perch Logo" style="width:20%;"></a>
+    </h2>
+    <div class="pull-right">
+        <a href="{% url 'stats' %}">
+            <h1><i class="fa fa-line-chart" aria-hidden="true"></i></h1>
+        </a>
+        <div class="row">
+        </div>
+        <div class="col-centered">
+            <a href="{% url 'admin:index' %}">
+                <h1><i class="fa fa-key" aria-hidden="true"></i></h1>
+            </a>
+        </div>
     </div>
-    <div class="col-centered">
-      <a href="{% url 'admin:index' %}">
-        <h1><i class="fa fa-key" aria-hidden="true"></i></h1>
-      </a>
-    </div>
-  </div>
 </div>
-
 
 <div class="container">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-         aria-selected="true">Pickup</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-         aria-selected="false">Screen Display</a>
-    </li>
-  </ul>
-
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <h2>grab the product that you like!</h2>
-    </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <h2>Enjoy the navigation</h2>
-    </div>
-  </div>
-
-  <div id="myCarousel" class="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div id="Green Shoe" class="item active">
-        <img src="{% static 'kiosk/images/shoe-1.jpg' %}" alt="Shoe 1" class="center">
-      </div>
-
-      <div id="Louboutin Shoes" class="item">
-        <img src="{% static 'kiosk/images/shoe-2.gif' %}" alt="Shoe 2" style="width:50%;" class="center">
-      </div>
-
-      <div id="Lancome perfume" class="item">
-        <img src="{% static 'kiosk/images/perfume-3.gif' %}" alt="perfume" style="width:50%;" class="center">
-      </div>
-
-      <div id="Kim Crawford Wine" class="item">
-        <img src="{% static 'kiosk/images/wine-4.gif' %}" alt="wine" style="width:50%;" class="center">
-      </div>
-
-      <div id="Rubber Duck" class="item">
-        <img src="{% static 'kiosk/images/duck-5.gif' %}" alt="rubber duck" style="width:50%;" class="center">
-      </div>
+    <div class="container">
+        <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
+            <li class="nav-item active">
+                <a class="nav-link" id="home-tab" href="{% url 'index' %}" role="tab" aria-controls="home"
+                >Pickup</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="profile-tab" href="{% url 'display' %}" role="tab"
+                   aria-controls="profile"
+                >Screen Display</a>
+            </li>
+        </ul>
     </div>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+
+    <h2>grab the product you like!</h2>
+    <div id="myCarousel" class="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div id="Green Shoe" class="item active">
+                <img src="{% static 'kiosk/images/shoe-1.jpg' %}" alt="Shoe 1" class="center">
+            </div>
+
+            <div id="Louboutin Shoes" class="item">
+                <img src="{% static 'kiosk/images/shoe-2.gif' %}" alt="Shoe 2" style="width:50%;" class="center">
+            </div>
+
+            <div id="Lancome perfume" class="item">
+                <img src="{% static 'kiosk/images/perfume-3.gif' %}" alt="perfume" style="width:50%;" class="center">
+            </div>
+
+            <div id="Kim Crawford Wine" class="item">
+                <img src="{% static 'kiosk/images/wine-4.gif' %}" alt="wine" style="width:50%;" class="center">
+            </div>
+
+            <div id="Rubber Duck" class="item">
+                <img src="{% static 'kiosk/images/duck-5.gif' %}" alt="rubber duck" style="width:50%;" class="center">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
+
 <br><br>
 <div class="container-fluid">
-  <div class="panel panel-default">
-    <div class="panel-heading">Engagement Event log</div>
-    <div id="console" class="panel-body, console"></div>
-  </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Engagement Event log</div>
+        <div id="console" class="panel-body, console"></div>
+    </div>
 </div>
 
 </body>
