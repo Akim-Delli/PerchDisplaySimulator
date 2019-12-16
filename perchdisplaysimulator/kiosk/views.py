@@ -31,8 +31,6 @@ def stats(request):
     products_ratio = Engagement.objects.values('product_name').annotate(y=Count('id'))
     pie_chart_data = [[product['product_name'],
                        (product['y'] / total_interaction) * 100] for product in products_ratio]
-    from pprint import pprint
-    pprint(list(pie_chart_data))
 
     engagements_group_product_and_day = defaultdict(dict)
     days = set()
