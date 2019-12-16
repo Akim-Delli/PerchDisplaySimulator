@@ -9,11 +9,25 @@ $(document).ready(function () {
     }
 
     $('img').click(function () {
-        let productId = $(this).parent().attr('id');
+        let productId = "neutrogena";
 
         let rndValue;
         // GENERATE A RANDOM NUMBER (BETWEEN 1 AND 100000) FOR EVERY BUTTON CLICK.
         rndValue = Math.floor((Math.random() * 100000));
+
+        let rndIndice = Math.floor((Math.random() * 10));
+        let user_actions = ["video play",
+            "video paused",
+            "video stopped",
+            "image modal 1 opened",
+            "image modal 1 closed",
+            "image modal 2 closed",
+            "image modal 2 opened",
+            "image 3 zoomed in",
+            "product description selected",
+            "contact us form filled out"
+        ];
+        let action = user_actions[rndIndice]
 
         let now = new Date();
         let month = now.getMonth() + 1
@@ -24,16 +38,16 @@ $(document).ready(function () {
             + now.getMinutes() + ":"
             + now.getSeconds() + "Z";
 
-        logProductInfo(productId, "Product Pickup", nowDateTime, rndValue, geolocation);
+        logProductInfo(productId, "Display", nowDateTime, rndValue, action, geolocation);
         console.log(productId);
 
 
         $.post("/log", {
                 product_name: productId,
-                interaction_type: "Pickup",
+                interaction_type: "Display",
                 interaction_time: nowDateTime,
                 kiosk_id: rndValue,
-                button_name: "",
+                action: action,
                 geolocation: geolocation
             }
         ).done(function () {
@@ -45,12 +59,13 @@ $(document).ready(function () {
     });
 });
 
-function logProductInfo(productId, eventType, interaction_time, kiosk_id, geolocation) {
+function logProductInfo(productId, eventType, interaction_time, kiosk_id, action, geolocation) {
 
     $('<div>' + interaction_time
         + ' --- Event Type: ' + eventType
         + ', Product Name:' + productId
         + ', Kiosk Id: ' + kiosk_id
+        + ', User Action: ' + action
         + ', Location:' + geolocation + '</div>').prependTo('#console');
 };
 
