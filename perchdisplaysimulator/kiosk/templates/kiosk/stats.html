@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Perch Display Simulator</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'kiosk/style.css' %}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Perch Display Simulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'kiosk/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'kiosk/charts.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript">
+        {%
+            autoescape
+            off %
+        }
+        let charts_data = {
+        {
+            charts_data
+        }
+        }
+        ;
+        {%
+            endautoescape %
+        }
+    </script>
+    <script src="{% static 'kiosk/js/charts.js' %}"></script>
 </head>
 
 
 <body>
 <div class="container">
-  <h2><a href="{% url 'index' %}"><img src="{% static 'kiosk/images/logo.png' %}" alt="Perch Logo"
-                                       style="width:20%;"></a></h2>
+    <h2><a href="{% url 'index' %}"><img src="{% static 'kiosk/images/logo.png' %}" alt="Perch Logo"
+                                         style="width:20%;"></a></h2>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-info">
+                <div class="panel-heading"><b>Overall Product Popularity</b></div>
+                <div class="panel-body">
+                    <figure class="highcharts-figure">
+                        <div id="container-pie"></div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-info">
+                <div class="panel-heading"><b>Product Engagement</b></div>
+                <div class="panel-body">
+                    <figure class="highcharts-figure">
+                        <div id="container-line"></div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
 
 
-  <tbody>
-  {% if latest_interaction_list %}
-  <div class="panel panel-primary">
-    <div class="panel-heading">Engagement Interactions</div>
+    <tbody>
+    {% if latest_interaction_list %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">Engagement Interactions</div>
 
-    <table class="table table-striped">
+        <table class="table table-striped">
       <thead class="thead-dark">
       <tr>
         <th scope="col">#</th>

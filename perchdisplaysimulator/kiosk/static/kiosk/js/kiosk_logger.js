@@ -33,6 +33,7 @@ $(document).ready(function () {
                 interaction_type: "Pickup",
                 interaction_time: nowDateTime,
                 kiosk_id: rndValue,
+                button_name: "",
                 geolocation: geolocation
             }
         ).done(function () {

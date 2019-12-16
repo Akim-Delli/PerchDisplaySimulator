@@ -6,7 +6,7 @@ class Engagement(models.Model):
     product_name = models.CharField(max_length=200)
     interaction_time = models.DateTimeField('interaction time')
     interaction_type = models.CharField(max_length=200)
-    button_name = models.CharField(max_length=200)
+    button_name = models.CharField(max_length=200, null=True)
     geolocation = models.CharField(max_length=200, null=True)
 
     def __str__(self):
