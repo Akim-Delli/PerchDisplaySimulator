@@ -1,5 +1,3 @@
-console.log(charts_data);
-
 $(document).ready(function () {
     var title = {
         text: 'Product Pickup'
