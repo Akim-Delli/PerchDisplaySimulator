@@ -16,19 +16,9 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script type="text/javascript">
-        {%
-            autoescape
-            off %
-        }
-        let charts_data = {
-        {
-            charts_data
-        }
-        }
-        ;
-        {%
-            endautoescape %
-        }
+        {% autoescape off %}
+        let charts_data = {{ charts_data }};
+        {% endautoescape %}
     </script>
     <script src="{% static 'kiosk/js/charts.js' %}"></script>
 </head>
